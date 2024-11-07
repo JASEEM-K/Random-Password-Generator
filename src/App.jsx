@@ -82,7 +82,6 @@ function App() {
         <label className='ml-1 font-bold'>!@#</label>
         </div>
         </div>
-        <PasswordGenerator />
       </div>
       <Toaster />
     </div>
