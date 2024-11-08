@@ -4,7 +4,6 @@ import { GrRefresh } from "react-icons/gr";
 import {  HiMinusSm, HiPlusSm } from "react-icons/hi";
 import toast, { Toaster } from 'react-hot-toast'
 import './App.css'
-import PasswordGenerator from './Password gertor.jsx';
 
 function App() {
   const [ length, setLength ] = useState(12)
@@ -34,55 +33,55 @@ function App() {
   }
 
   return (
-    <div className=''>
+    <div className='text-white' >
       <div className="mx-auto max-w-2xl">
         <h1 className='text-6xl font-bold '>
           Password Generator
         </h1>
         <p className='text-xl mt-4'>Create a strong and secure password</p>
       </div>
-      <div className='flex flex-col items-end justify-center mt-10'>
+      <div className='flex flex-col items-center justify-center mt-10'>
         <div className='flex gap-2'>
-          <div className=' border rounded-full p-2 shadow-inner'>
-            <input type="text" disabled value={password} className='max-w-2xl p-2' />
-            <span className={`mr-2 ${bgcolor} text-black font-mono text-sm font-bold p-2 rounded-xl min-w-0 w-24`}>{status}</span>
+          <div className=' border rounded-full p-2.5 shadow-inner'>
+            <input type="text" disabled value={password} className='bg-slate-900 text-white text-lg w-64 font-mono max-w-5xl p-2' />
+            <span className={`mr-2 shadow-inner translate-y-1 font-mono ${bgcolor} text-black  text-sm font-bold p-2 rounded-xl min-w-0 w-24`}>{status}</span>
             <button onClick={() => setRetry(!retry)} className='text-xl p-2 translate-y-1 cursor-pointer'><GrRefresh /></button>
           </div>
           <button onClick={() => toast.success("Copied")}
             className='bg-blue-500 shadow-xl ms-4 font-bold w-20 text-white rounded-full transform transition-transform duration-300 ease-in-out hover:scale-110' >
             Copy</button>
         </div>
-        <div className='flex gap-2 mt-5'>
-        <label>Length: {length}</label>
+        <span className='font-mono mt-5 font-bold'>Length: {length}</span>
+        <div className='flex gap-2 mt-2'>
           <button 
-          className={`${length <= 0 ? 'border-slate-500 text-slate-500' : 'hover:text-white hover:bg-black transform transition-transform duration-300 ease-in-out hover:scale-125 border-black'} mx-3 border rounded-full  p-2 text-xl`}
-          onClick={() => setLength(length-1)}><HiMinusSm /></button>
+          className={`${length <= 0 ? 'bg-slate-500 text-white cursor-not-allowed' : 'hover:text-white hover:bg-blue-500 border-white transform transition-transform duration-300 ease-in-out hover:scale-125 '} mx-3 border rounded-full  p-2 text-xl`}
+          onClick={() => setLength(length-1)} {...length <= 0 ? {disabled: true} : {disabled: false}}><HiMinusSm /></button>
           <input type="range" min="1" max="40" value={length} onChange={(e) => setLength(e.target.value)} 
-          className='w-80 text-lg mx-5 cursor-pointer bg-white scale-110' />
-          <button className={`${length >= 40 ? 'border-slate-500 text-slate-500' : 'hover:text-white hover:bg-black transform transition-transform duration-300 ease-in-out hover:scale-125 border-black'} mx-3 border rounded-full  p-2 text-xl`}
+          className='w-64 text-lg mx-5 cursor-pointer scale-110' />
+          <button className={`${length >= 40 ? 'bg-slate-500 text-white cursor-not-allowed' : 'hover:text-white hover:bg-blue-500 border-white transform transition-transform duration-300 ease-in-out hover:scale-125 '} mx-3 border rounded-full  p-2 text-xl`}
            onClick={() => setLength(parseInt(length)+1)} {...length >= 40 ? {disabled: true} : {disabled: false}}><HiPlusSm /></button>
         </div>
-        <div className='flex justify-between w-72 mt-5'>
+        <span className='mt-3 font-mono font-bold'>Include Characters:</span>
+        <div className='text-xl flex justify-between w-96 mt-5'>
         <div>
-        <input type='checkbox' checked={incUpper} onChange={(e) => setIncUpper(e.target.checked)} />
+        <input className='w-4 h-4 ' type='checkbox' checked={incUpper} onChange={(e) => setIncUpper(e.target.checked)} />
         <label className='ml-1 font-bold'>ABC</label>
         </div>
         <div>
-        <input type='checkbox' checked={incLower} onChange={(e) => setIncLower(e.target.checked)} />
+        <input className='w-4 h-4 ' type='checkbox' checked={incLower} onChange={(e) => setIncLower(e.target.checked)} />
         <label className='ml-1 font-bold'>abc</label>
         </div>
         <div>
         <input type='checkbox' checked={incNumber} onChange={(e) => setIncNumber(e.target.checked)}
-          className=' rounded checked:ring-white checked:text-black shadow-inner text-lg w-5 h-5 '
+          className='w-4 h-4 '
          />
         <label className='ml-1 font-bold'>012</label>
         </div>
         <div>
-        <input type='checkbox' checked={incSymbol} onChange={(e) => setIncSymbol(e.target.checked)} />
+        <input className='w-4 h-4 ' type='checkbox' checked={incSymbol} onChange={(e) => setIncSymbol(e.target.checked)} />
         <label className='ml-1 font-bold'>!@#</label>
         </div>
         </div>
-        <PasswordGenerator />
       </div>
       <Toaster />
     </div>
