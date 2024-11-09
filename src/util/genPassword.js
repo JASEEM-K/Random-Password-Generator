@@ -1,6 +1,6 @@
 
 
-export const genPassword = (length,capitalcase,numbers,symbols,lowercase) => {
+export const genPassword = (length,capitalcase,lowercase,numbers,symbols) => {
 
     let password = ""
     let characters = ""
