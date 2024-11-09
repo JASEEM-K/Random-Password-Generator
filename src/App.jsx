@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { genPassword } from './util/genPassword.js'
 import { GrRefresh } from "react-icons/gr";
 import {  HiMinusSm, HiPlusSm } from "react-icons/hi";
@@ -12,8 +12,8 @@ function App() {
   const [incNumber,setIncNumber] = useState(true)
   const [incSymbol,setIncSymbol] = useState(true)
   const [ retry, setRetry ] = useState(false)
-  let {password,status}= genPassword(length,incUpper,incLower,incNumber,incSymbol)
   let bgcolor = "bg-white"
+  let {password,status} = genPassword(length, incUpper, incLower, incNumber, incSymbol)
 
   switch (status) {
     case "Very Strong":
@@ -31,6 +31,10 @@ function App() {
     default:
       break;
   }
+
+  useEffect(() => {
+    genPassword(length, incUpper, incLower, incNumber, incSymbol)
+  }, [length, incUpper, incLower, incNumber, incSymbol, retry])
 
   return (
     <div className='text-white' >

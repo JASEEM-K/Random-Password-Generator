@@ -37,7 +37,7 @@ export const genPassword = (length,capitalcase,lowercase,numbers,symbols) => {
 
 
 
-export const genPasswordV2 = (length, capitalcase, numbers, symbols, lowercase) => {
+export const genPasswordV2 = (length, capitalcase, lowercase, numbers, symbols) => {
     let password = ""
     while (password.length <= length) {
         const no = Math.floor(Math.random() * 126) 
@@ -67,3 +67,6 @@ export const genPasswordV2 = (length, capitalcase, numbers, symbols, lowercase) 
     return password
 }
 
+console.log(genPassword(40,true,false,true,false))
+console.log('--------------------------------------------')
+console.log(genPasswordV2(40,true,false,true,false))
