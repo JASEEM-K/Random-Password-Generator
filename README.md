@@ -20,7 +20,7 @@ Features
 Getting Started
 Prerequisites
 
-    Node.js: Make sure you have Node.js installed.
+   Node.js: Make sure you have Node.js installed.
 
 Installation
 
