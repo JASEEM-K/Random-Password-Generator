@@ -31,7 +31,7 @@ const HackerText = ({ text, speed = 50 }) => {
   return <span>{displayedText}</span>;
 };
 
-
+// TODO: Need to improve this 
 HackerText.defaultProps = {
   speed: 50,
 };
