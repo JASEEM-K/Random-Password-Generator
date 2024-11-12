@@ -39,5 +39,6 @@ HackerText.propTypes = {
   text: PropTypes.string.isRequired,
   speed: PropTypes.number,
 };
+// TODO: Implement Hacktext while TWG ing the Text
 
 export default HackerText;
