@@ -13,7 +13,7 @@ const PasswordGenerator = () => {
     }
     setPassword(newPassword);
   };
-
+const setPasswordasHash = true
   return (
     <div>
       <HackerText text={password} speed={50} />
