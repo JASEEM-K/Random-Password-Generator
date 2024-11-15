@@ -29,6 +29,7 @@ function App() {
       bgcolor = "bg-red-500"
       break;
     default:
+      bgcolor = "bg-blue-500"
       break;
   }
 
