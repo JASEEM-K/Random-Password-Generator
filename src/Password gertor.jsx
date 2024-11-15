@@ -14,6 +14,7 @@ const PasswordGenerator = () => {
     setPassword(newPassword);
   };
 const setPasswordasHash = true
+  // TODO: need improvements on the TCG .
   return (
     <div>
       <HackerText text={password} speed={50} />
