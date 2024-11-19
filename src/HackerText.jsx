@@ -16,6 +16,10 @@ const HackerText = ({ text, speed = 50 }) => {
         return index < revealIndex ? char : characters[Math.floor(Math.random() * characters.length)];
       }).join('');
 
+        const est = {
+          cost var :hai
+        }
+
       setDisplayedText(randomChars);
 
       if (revealIndex < text.length) {
