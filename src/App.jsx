@@ -3,6 +3,7 @@ import { genPassword } from './util/genPassword.js'
 import { GrRefresh } from "react-icons/gr";
 import {  HiMinusSm, HiPlusSm } from "react-icons/hi";
 import toast, { Toaster } from 'react-hot-toast'
+import { TbEyeClosed , TbEye } from "react-icons/tb";
 import './App.css'
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   const [incNumber,setIncNumber] = useState(true)
   const [incSymbol,setIncSymbol] = useState(true)
   const [ retry, setRetry ] = useState(false)
+  const [ inputType, setInputType ] = useState("password")
   let bgcolor = "bg-white"
   let {password,status} = genPassword(length, incUpper, incLower, incNumber, incSymbol)
 
@@ -47,7 +49,10 @@ function App() {
       <div className='flex flex-col items-center justify-center mt-10'>
         <div className='flex gap-2'>
           <div className=' border rounded-full p-2.5 shadow-inner'>
-            <input type="text" disabled value={password} className='bg-slate-900 text-white text-lg w-64 font-mono max-w-5xl p-2' />
+            <input type={inputType} disabled value={password} className='bg-slate-900 text-white text-lg w-64 font-mono max-w-5xl p-2' />
+            <span>{inputType ==="password" ? <TbEyeClosed onClick={() => setInputType("text")} className='cursor-pointer' /> :
+             <TbEye onClick={() => setInputType("password")} className='cursor-pointer' />}
+            </span>
             <span className={`mr-2 shadow-inner translate-y-1 font-mono ${bgcolor} text-black  text-sm font-bold p-2 rounded-xl min-w-0 w-24`}>{status}</span>
             <button onClick={() => setRetry(!retry)} className='text-xl p-2 translate-y-1 cursor-pointer'><GrRefresh /></button>
           </div>
