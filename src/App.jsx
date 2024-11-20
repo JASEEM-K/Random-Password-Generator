@@ -8,14 +8,14 @@ import './App.css'
 
 function App() {
   const [ length, setLength ] = useState(12)
-  const [incUpper,setIncUpper] = useState(true)
-  const [incLower,setIncLower] = useState(true)
-  const [incNumber,setIncNumber] = useState(true)
-  const [incSymbol,setIncSymbol] = useState(true)
+  const [ incUpper, setIncUpper ] = useState(true)
+  const [ incLower, setIncLower ] = useState(true)
+  const [ incNumber, setIncNumber ] = useState(true)
+  const [ incSymbol, setIncSymbol ] = useState(true)
   const [ retry, setRetry ] = useState(false)
   const [ inputType, setInputType ] = useState("password")
   let bgcolor = "bg-white"
-  let {password,status} = genPassword(length, incUpper, incLower, incNumber, incSymbol)
+  let { password, status } = genPassword(length, incUpper, incLower, incNumber, incSymbol)
 
   switch (status) {
     case "Very Strong":
@@ -31,6 +31,7 @@ function App() {
       bgcolor = "bg-red-500"
       break;
     default:
+      bgcolor = "bg-blue-500"
       break;
   }
 

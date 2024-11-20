@@ -16,6 +16,10 @@ const HackerText = ({ text, speed = 50 }) => {
         return index < revealIndex ? char : characters[Math.floor(Math.random() * characters.length)];
       }).join('');
 
+        const est = {
+          cost var :hai
+        }
+
       setDisplayedText(randomChars);
 
       if (revealIndex < text.length) {
@@ -31,7 +35,7 @@ const HackerText = ({ text, speed = 50 }) => {
   return <span>{displayedText}</span>;
 };
 
-
+// TODO: Need to improve this 
 HackerText.defaultProps = {
   speed: 50,
 };
@@ -39,5 +43,6 @@ HackerText.propTypes = {
   text: PropTypes.string.isRequired,
   speed: PropTypes.number,
 };
+// TODO: Implement Hacktext while TWG ing the Text
 
 export default HackerText;
