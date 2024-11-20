@@ -14,6 +14,10 @@ function App() {
   const [ incSymbol, setIncSymbol ] = useState(true)
   const [ retry, setRetry ] = useState(false)
   const [ inputType, setInputType ] = useState("password")
+  const [ Caphover, setCaphover ] = useState(false)
+  const [ Lowhover, setLowhover ] = useState(false)
+  const [ Numhover, setNumhover ] = useState(false)
+  const [ Symhover, setSymhover ] = useState(true)
   let bgcolor = "bg-white"
   let { password, status } = genPassword(length, incUpper, incLower, incNumber, incSymbol)
 
@@ -55,14 +59,14 @@ function App() {
              <TbEye onClick={() => setInputType("password")} className='cursor-pointer' />}
             </span>
             <input type={inputType} disabled value={password} className='bg-slate-900 text-white text-lg w-56 font-mono max-w-3xl p-2' />
-            <span className={`mr-2 shadow-inner translate-y-1 font-mono ${bgcolor} text-black  text-sm font-bold p-2 rounded-xl min-w-0 w-24`}>{status}</span>
-            <button onClick={() => setRetry(!retry)} className='text-xl p-2 translate-y-1 cursor-pointer'><GrRefresh /></button>
+            <span className={`mr-2 shadow-inner translate-y-1 font-mono ${bgcolor} text-black max-h-9  text-sm font-bold p-2 rounded-xl min-w-0 w-24`}>{status}</span>
+            <button onClick={() => setRetry(!retry)} className='text-xl p-2 translate-y-0 cursor-pointer'><GrRefresh /></button>
           </div>
           <button onClick={() => toast.success("Copied")}
-            className='bg-blue-500 shadow-xl ms-4 font-bold w-20 text-white rounded-full transform transition-transform duration-300 ease-in-out hover:scale-110' >
+            className='bg-blue-500 shadow-xl ms-4 font-bold  w-20 text-white rounded-full transform transition-transform duration-300 ease-in-out hover:scale-110' >
             Copy</button>
         </div>
-        <span className='font-mono mt-5 font-bold'>Length: {length}</span>
+        <span className='font-mono mt-6 font-bold'>Length: {length}</span>
         <div className='flex gap-2 mt-2'>
           <button 
           className={`${length <= 0 ? 'bg-slate-500 text-white cursor-not-allowed' : 'hover:text-white hover:bg-blue-500 border-white transform transition-transform duration-300 ease-in-out hover:scale-125 '} mx-3 border rounded-full  p-2 text-xl`}
@@ -72,28 +76,45 @@ function App() {
           <button className={`${length >= 40 ? 'bg-slate-500 text-white cursor-not-allowed' : 'hover:text-white hover:bg-blue-500 border-white transform transition-transform duration-300 ease-in-out hover:scale-125 '} mx-3 border rounded-full  p-2 text-xl`}
            onClick={() => setLength(parseInt(length)+1)} {...length >= 40 ? {disabled: true} : {disabled: false}}><HiPlusSm /></button>
         </div>
-        <span className='mt-3 font-mono font-bold'>Include Characters:</span>
-        <div className='text-xl flex justify-between w-96 mt-5'>
-        <div>
-        <input className='w-4 h-4 ' type='checkbox' checked={incUpper} onChange={(e) => setIncUpper(e.target.checked)} />
+        <span className='mt-5 font-mono font-bold'>Include Characters:</span>
+        <div className='text-xl flex justify-between w-96 mt-5' >
+        <div onMouseOver={() => setCaphover(true)} onMouseLeave={() => setCaphover(false)}>
+        <input className='w-4 h-4 ' type='checkbox' checked={incUpper} onChange={(e) => setIncUpper(e.target.checked)} 
+        />
         <label className='ml-1 font-bold'>ABC</label>
         </div>
-        <div>
-        <input className='w-4 h-4 ' type='checkbox' checked={incLower} onChange={(e) => setIncLower(e.target.checked)} />
+        <div onMouseOver={() => setLowhover(true)} onMouseLeave={() => setLowhover(false)} >
+        <input className='w-4 h-4 ' type='checkbox' checked={incLower} onChange={(e) => setIncLower(e.target.checked)} 
+        />
         <label className='ml-1 font-bold'>abc</label>
         </div>
-        <div>
+        <div onMouseOver={() => setNumhover(true)} onMouseLeave={() => setNumhover(false)}>
         <input type='checkbox' checked={incNumber} onChange={(e) => setIncNumber(e.target.checked)}
-          className='w-4 h-4 '
-         />
+          className='w-4 h-4 ' />
         <label className='ml-1 font-bold'>012</label>
         </div>
-        <div>
+        <div onMouseOver={() => setSymhover(true)} onMouseLeave={() => setSymhover(false)} >
         <input className='w-4 h-4 ' type='checkbox' checked={incSymbol} onChange={(e) => setIncSymbol(e.target.checked)} />
         <label className='ml-1 font-bold'>!@#</label>
         </div>
         </div>
       </div>
+      {Caphover && <div className="absolute bottom-64 left-1/2 transform -translate-x-48 bg-gray-800 text-white text-sm px-3 py-2 rounded shadow-lg">
+          <span className="absolute -top-1 left-1/2 transform -translate-x-16 w-3 h-3 bg-gray-800 rotate-45"></span>
+          Includes Capital Letters (A-Z)
+        </div>}
+      {Lowhover && <div className="absolute bottom-64 left-1/2 transform -translate-x-36 bg-gray-800 text-white text-sm px-3 py-2 rounded shadow-lg">
+          <span className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-800 rotate-45"></span>
+          Includes Lower Letters (a-z)
+       </div>}
+      {Numhover && <div className="absolute bottom-64 left-1/2 transform -translate-x-6 bg-gray-800 text-white text-sm px-3 py-2 rounded shadow-lg">
+          <span className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-gray-800 rotate-45"></span>
+          Includes Numbers (0-9)
+      </div>}
+      {Symhover && <div className="absolute bottom-64 left-1/2 transform translate-x-8 bg-gray-800 text-white text-sm px-3 py-2 rounded shadow-lg">
+          <span className="absolute -top-1 left-1/2 transform translate-x-10 w-3 h-3 bg-gray-800 rotate-45"></span>
+          Includes Symbols (!@#)
+      </div>}
       <Toaster />
     </div>
   )
