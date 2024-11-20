@@ -49,11 +49,12 @@ function App() {
       </div>
       <div className='flex flex-col items-center justify-center mt-10'>
         <div className='flex gap-2'>
-          <div className=' border rounded-full p-2.5 shadow-inner'>
-            <input type={inputType} disabled value={password} className='bg-slate-900 text-white text-lg w-64 font-mono max-w-5xl p-2' />
-            <span>{inputType ==="password" ? <TbEyeClosed onClick={() => setInputType("text")} className='cursor-pointer' /> :
+          <div className=' border rounded-full p-2.5 shadow-inner flex flex-row'>
+            <span className='text-2xl mx-2 translate-y-2.5'>
+              {inputType ==="password" ? <TbEyeClosed onClick={() => setInputType("text")} className='cursor-pointer' /> :
              <TbEye onClick={() => setInputType("password")} className='cursor-pointer' />}
             </span>
+            <input type={inputType} disabled value={password} className='bg-slate-900 text-white text-lg w-56 font-mono max-w-3xl p-2' />
             <span className={`mr-2 shadow-inner translate-y-1 font-mono ${bgcolor} text-black  text-sm font-bold p-2 rounded-xl min-w-0 w-24`}>{status}</span>
             <button onClick={() => setRetry(!retry)} className='text-xl p-2 translate-y-1 cursor-pointer'><GrRefresh /></button>
           </div>
